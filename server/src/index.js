@@ -10,8 +10,6 @@ const fs = require("fs");
 const path = require("path");
 const { getUserId } = require("./utils");
 
-/* 🚧 TODO: remove this */ const userID = 4;
-
 const pubsub = new PubSub();
 
 const prisma = new PrismaClient({
@@ -35,7 +33,7 @@ const server = new ApolloServer({
       ...req,
       prisma,
       pubsub,
-      userId: req && req.headers.authorization ? getUserId(req) : userID,
+      userId: req && req.headers.authorization ? getUserId(req) : null,
     };
   },
   subscriptions: {
